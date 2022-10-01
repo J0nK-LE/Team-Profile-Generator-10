@@ -1,15 +1,11 @@
 const Intern = require("../lib/Intern")
 
 describe('Intern', () => {
-    
+
     describe('initialization', () => {
-        // need an init function in the employee.js
         it('should get initialized correctly', () => {
             let newIntern = new Intern("Jon", 3, "Jon@sidmail.com", "OU")
 
-            // Arrange
-            // Act
-            // Assert
             expect(newIntern.name).toEqual("Jon")
             expect(newIntern.id).toEqual(3)
             expect(newIntern.email).toEqual("Jon@sidmail.com")
@@ -22,24 +18,21 @@ describe('Intern', () => {
         it('should return the school given', () => {
             let newIntern = new Intern("Jon", 3, "Jon@sidmail.com", "OU")
 
-            // Arrange
-            // Act
-            // Assert
             expect(newIntern.getSchool()).toEqual("OU")
-            
+
         })
 
     });
-   
-    
+
+
 
     describe('getRole', () => {
         it('should return Intern when asked what role', () => {
             let newIntern = new Intern("Jon", 3, "Jon@sidmail.com", "OU")
 
-           expect(newIntern.getRole()).toEqual("Intern")
+            expect(newIntern.getRole()).toEqual("Intern")
 
         })
-    
+
     });
 });

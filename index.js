@@ -1,9 +1,12 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const Manager = require("./lib/Manager.js")
+const Engineer = require("./lib/Engineer.js")
+const Intern = require("./lib/Intern.js")
 
-const workTeam = []
+let workTeam = []
 
-const questions = [
+const managerQuestions = [
     {
         type: 'input',
         message: 'What is the name of the team manager?',
@@ -45,20 +48,17 @@ const questions = [
         message: "What is the manager's office number?",
         name: 'managerOfficeNum',
         validate: (managerOfficeNum) => {
-            if (isNaN(managerOfficeNum)) {
+            if ((managerOfficeNum === '')) {
+                return 'please enter an office number'
+            } 
+             else if (isNaN(managerOfficeNum)) {
                 return 'please enter an office number'
             } else {
                 return true
             }
         }
-    },
-    {
-        type: 'list',
-        message: 'Would you like to add an employee?',
-        name: 'selectMenu',
-        choices: ['add engineer', 'add intern', 'finish team'],
-
-    },
+    }]
+    const engineerQuestion = [
     {
         type: 'input',
         message: 'What is the name of the engineer?',
@@ -107,7 +107,8 @@ const questions = [
                 return true
             }
         }
-    },
+    }]
+    const internQuestion = [
     {
         type: 'input',
         message: 'What is the name of the intern?',
@@ -161,15 +162,66 @@ const questions = [
 ];
 
 
-// function selectMenu(aFood) {
-//     return function (answers) {
-//         return answers[aFood];
-//     };
-// }
 
-inquirer.prompt(questions).then((answers) => {
 
-    console.log(JSON.stringify(answers, null, '  '));
+inquirer.prompt(managerQuestions).then((answers) => {
+    let manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum)
+    workTeam.push(manager)
+    console.log(workTeam, null, '  ');
+    addTeam()
+  
 
 
 });
+
+function addTeam(){
+    inquirer.prompt([
+         {
+        type: 'list',
+        message: 'Would you like to add an employee?',
+        name: 'selectMenu',
+        choices: ['add engineer', 'add intern', 'finish team'],
+
+    }]).then(answers => {
+        switch (answers.selectMenu) {
+            case "add engineer":
+                addEngineer()
+                break;
+            case "add intern":
+                addIntern()
+                break;
+            default:
+                renderHtml()
+                break;
+        }
+    })
+}
+
+function addEngineer(){
+    inquirer.prompt(engineerQuestion)
+        .then((answers) => {
+            let engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGit)
+            workTeam.push(engineer)
+            console.log(workTeam, null, '  ');
+            addTeam()
+        
+        
+        });
+    
+}
+function addIntern(){
+    inquirer.prompt(internQuestion)
+        .then((answers) => {
+            let intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
+            workTeam.push(intern)
+            console.log(workTeam, null, '  ');
+            addTeam()
+        
+        
+        });
+    
+}
+
+function renderHtml() {
+    console.log(JSON.stringify(workTeam, null, '  '));
+}

@@ -50,15 +50,15 @@ const managerQuestions = [
         validate: (managerOfficeNum) => {
             if ((managerOfficeNum === '')) {
                 return 'please enter an office number'
-            } 
-             else if (isNaN(managerOfficeNum)) {
+            }
+            else if (isNaN(managerOfficeNum)) {
                 return 'please enter an office number'
             } else {
                 return true
             }
         }
     }]
-    const engineerQuestion = [
+const engineerQuestion = [
     {
         type: 'input',
         message: 'What is the name of the engineer?',
@@ -70,7 +70,6 @@ const managerQuestions = [
                 return true
             }
         }
-
     },
     {
         type: 'input',
@@ -108,7 +107,7 @@ const managerQuestions = [
             }
         }
     }]
-    const internQuestion = [
+const internQuestion = [
     {
         type: 'input',
         message: 'What is the name of the intern?',
@@ -157,69 +156,55 @@ const managerQuestions = [
             }
         }
     },
-    
-
 ];
-
-
-
 
 inquirer.prompt(managerQuestions).then((answers) => {
     let manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum)
     workTeam.push(manager)
-    console.log(workTeam, null, '  ');
+    console.log(workTeam);
     addTeam()
-  
-
-
 });
 
-function addTeam(){
+function addTeam() {
     inquirer.prompt([
-         {
-        type: 'list',
-        message: 'Would you like to add an employee?',
-        name: 'selectMenu',
-        choices: ['add engineer', 'add intern', 'finish team'],
+        {
+            type: 'list',
+            message: 'Would you like to add an employee?',
+            name: 'selectMenu',
+            choices: ['add engineer', 'add intern', 'finish team'],
 
-    }]).then(answers => {
-        switch (answers.selectMenu) {
-            case "add engineer":
-                addEngineer()
-                break;
-            case "add intern":
-                addIntern()
-                break;
-            default:
-                renderHtml()
-                break;
-        }
-    })
+        }]).then(answers => {
+            switch (answers.selectMenu) {
+                case "add engineer":
+                    addEngineer()
+                    break;
+                case "add intern":
+                    addIntern()
+                    break;
+                default:
+                    renderHtml()
+                    break;
+            }
+        })
 }
 
-function addEngineer(){
+function addEngineer() {
     inquirer.prompt(engineerQuestion)
         .then((answers) => {
             let engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGit)
             workTeam.push(engineer)
-            console.log(workTeam, null, '  ');
+            console.log(workTeam);
             addTeam()
-        
-        
         });
-    
 }
-function addIntern(){
+function addIntern() {
     inquirer.prompt(internQuestion)
         .then((answers) => {
             let intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
             workTeam.push(intern)
-            console.log(workTeam, null, '  ');
+            console.log(workTeam);
             addTeam()
-        
-        
         });
-    
 }
 
 function renderHtml() {

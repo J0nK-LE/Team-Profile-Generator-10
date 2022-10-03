@@ -1,50 +1,56 @@
-function renderCard(workTeam){
-    let managerCardTemplate = " "
-    let engineerCardTemplate = " "
-    let internCardTemplate = " "
+function renderHtml(workTeam) {
+  let managerCardTemplate = " "
+  let engineerCardTemplate = " "
+  let internCardTemplate = " "
 
 
 
-    for (let i = 0; i < workTeam.length; i++) {
-        const element = workTeam[i];
-        if(element.getRole() == "Manager"){
-            managerCardTemplate += `<div class="card" style="width: 18rem;">
+  for (let i = 0; i < workTeam.length; i++) {
+    const worker = workTeam[i];
+    if (worker.getRole() == "Manager") {
+      managerCardTemplate += `<div class="card m-3" style="width: 18rem;">
+            <div class="bg-primary text-white">
+            <h4 class="card-title p-1">${worker.name}</h4>
+            <h5 class="card-title p-1">&#9749 Manager</h5>
+            </div>
             <div class="card-body">
-              <h5 class="card-title">Manager</h5>
-              <p class="card-text">Name: ${element.name}</p>
-              <p class="card-text">ID number: ${element.id}</p>
-              <p class="card-text">Email: ${element.email}</p>
-              <p class="card-text">Office Number: ${element.officeNumber}</p>
+              <p class="card-text">ID number: ${worker.id}</p>
+              <p class="card-text">Email:<a href="mailto:${worker.email}"> ${worker.email}</a></p>
+              <p class="card-text">Office Number: ${worker.officeNumber}</p>
             
             </div>
           </div>`
-        } else if(element.getRole() == "Engineer"){
-            engineerCardTemplate += `<div class="card" style="width: 18rem;">
+    } else if (worker.getRole() == "Engineer") {
+      engineerCardTemplate += `<div class="card m-3" style="width: 18rem;">
+            <div class="bg-primary text-white">
+            <h4 class="card-title p-1">${worker.name}</h4>
+            <h5 class="card-title p-1">&#128083 Engineer</h5>
+            </div>
             <div class="card-body">
-            <h5 class="card-title">Engineer</h5>
-            <p class="card-text">Name: ${element.name}</p>
-            <p class="card-text">ID number: ${element.id}</p>
-            <p class="card-text">Email: ${element.email}</p>
-            <p class="card-text">GitHub: ${element.github}</p>
+            <p class="card-text">ID number: ${worker.id}</p>
+            <p class="card-text">Email: ${worker.email}</p>
+            <p class="card-text">GitHub:<a href="https://www.github.com/${worker.github}">${worker.github}</a></p>
           
           </div>
         </div>`
-        } else{
-            internCardTemplate += `<div class="card" style="width: 18rem;">
+    } else {
+      internCardTemplate += `<div class="card m-3" style="width: 18rem;">
+            <div class="bg-primary text-white">
+            <h4 class="card-title p-1">${worker.name}</h4>
+            <h5 class="card-title p-1">&#127891 Intern</h5>
+            </div>
             <div class="card-body">
-            <h5 class="card-title">Intern</h5>
-            <p class="card-text">Name: ${element.name}</p>
-            <p class="card-text">ID number: ${element.id}</p>
-            <p class="card-text">Email: ${element.email}</p>
-            <p class="card-text">School: ${element.school}</p>
+            <p class="card-text">ID number: ${worker.id}</p>
+            <p class="card-text">Email: ${worker.email}</p>
+            <p class="card-text">School: ${worker.school}</p>
           
           </div>
         </div>`
 
-        }
-        
     }
-    let fetchHtml = `<!doctype html>
+
+  }
+  let fetchHtml = `<!doctype html>
     <html lang="en">
     
     <head>
@@ -61,10 +67,11 @@ function renderCard(workTeam){
                 <h1>My Team</h1>
             </div>
         </header>
-        
+        <main class="d-flex flex-wrap justify-content-center m-3 p-4">
         ${managerCardTemplate}
         ${engineerCardTemplate}
         ${internCardTemplate}
+        </main>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
@@ -72,6 +79,6 @@ function renderCard(workTeam){
     </body>
     
     </html>`
-    return fetchHtml
+  return fetchHtml
 }
-module.exports = renderCard
+module.exports = renderHtml

@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateHtml = require("./src/cardtemplate.js")
 const Manager = require("./lib/Manager.js")
 const Engineer = require("./lib/Engineer.js")
 const Intern = require("./lib/Intern.js")
@@ -208,5 +209,16 @@ function addIntern() {
 }
 
 function renderHtml() {
-    console.log(JSON.stringify(workTeam, null, '  '));
+    // console.log(JSON.stringify(workTeam, null, '  '));
+    let teamHtml = generateHtml(workTeam)
+    writeHtml(teamHtml)
+}
+
+function writeHtml(data){
+    fs.writeFile("./dist/index.html", data, err => {
+        if (err){
+            return console.log(err)
+        }
+        console.log("Success")
+    })
 }

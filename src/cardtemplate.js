@@ -28,7 +28,7 @@ function renderHtml(workTeam) {
             </div>
             <div class="card-body">
             <p class="card-text">ID number: ${worker.id}</p>
-            <p class="card-text">Email: ${worker.email}</p>
+            <p class="card-text">Email:<a href="mailto:${worker.email}"> ${worker.email}</a></p>
             <p class="card-text">GitHub:<a href="https://www.github.com/${worker.github}">${worker.github}</a></p>
           
           </div>
@@ -41,7 +41,7 @@ function renderHtml(workTeam) {
             </div>
             <div class="card-body">
             <p class="card-text">ID number: ${worker.id}</p>
-            <p class="card-text">Email: ${worker.email}</p>
+            <p class="card-text">Email:<a href="mailto:${worker.email}"> ${worker.email}</a></p>
             <p class="card-text">School: ${worker.school}</p>
           
           </div>

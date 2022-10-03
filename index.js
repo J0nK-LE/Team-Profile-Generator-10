@@ -162,7 +162,7 @@ const internQuestion = [
 inquirer.prompt(managerQuestions).then((answers) => {
     let manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum)
     workTeam.push(manager)
-    console.log(workTeam);
+    // console.log(workTeam);
     addTeam()
 });
 
@@ -194,7 +194,7 @@ function addEngineer() {
         .then((answers) => {
             let engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGit)
             workTeam.push(engineer)
-            console.log(workTeam);
+            // console.log(workTeam);
             addTeam()
         });
 }
@@ -203,7 +203,7 @@ function addIntern() {
         .then((answers) => {
             let intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
             workTeam.push(intern)
-            console.log(workTeam);
+            // console.log(workTeam);
             addTeam()
         });
 }

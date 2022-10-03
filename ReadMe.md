@@ -4,6 +4,8 @@
 ## About The Project
 Creates a webpage about a team of workers by asking questions in the command line about the team and generating the html in the back end
 
+![](assets/myteam-htmlDemo.gif)
+
 Link to repo - [https://github.com/J0nK-LE/challenge10](https://github.com/J0nK-LE/challenge10)
 
 [![License][ISC-bdg]][ISC-url]</div>
@@ -23,10 +25,13 @@ Link to repo - [https://github.com/J0nK-LE/challenge10](https://github.com/J0nK-
 Node.js with dependencies on inquirer@8.2.4
 ## Usage
 to create a webpage with information about a work team
+![](assets/myteam-appDemo.gif)
 ## License
 Uses the [ISC license][ISC-url]
 ## Tests
 By typing "npm run test" in the command line
+
+![](assets/myteam-testDemo.gif)
 ## Questions
 GitHub - [https://github.com/J0nK-LE](https://github.com/J0nK-LE)
 

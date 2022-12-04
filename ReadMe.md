@@ -3,6 +3,7 @@
 
 ## About The Project
 Creates a webpage about a team of workers by asking questions in the command line about the team and generating the html in the back end
+![site screenshot](assets/teambuilder.png)
 
 ![](assets/myteam-htmlDemo.gif)
 
